@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day22</title>
+    <style>
+      #container {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        /* display: grid;
+        grid-template-columns: auto auto auto auto auto; */
+        /* grid-template-columns: repeat(auto-fit()); */
+      }
+
+      #country {
+        width: 250px;
+        height: 200px;
+        border-radius: 2px solid;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+      }
+
+      .imgc {
+        width: 200px;
+        height: 120px;
+        border-radius: 5px;
+        margin: 0 auto;
+      }
+
+      .imgc > img {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 12px;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .main > h1 {
+        font-family: sans-serif;
+      }
+      .main > input {
+        width: 500px;
+        height: 30px;
+        border-radius: 3px;
+      }
+
+      @media screen and (max-width: 600px) {
+        #country {
+          width: 350px;
+          height: 250px;
+        }
+        .imgc {
+          width: 250px;
+          height: 200px;
+        }
+        .imgc > img {
+          width: 100%;
+          height: 100%;
+        }
+        .main > input {
+          width: 350px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <h1>World Countries Data</h1>
+      <input type="text" placeholder="Search by name, capital" id="inp" />
+      <div id="container">
+        <div id="country"></div>
+      </div>
+    </div>
+    <script>
+      const handleChange = (e) => {
+        console.log(e);
+        let d = document.getElementById("inp").value;
+        d = e.target.value;
+      };
+
+      const countriesApi = "https://restcountries.com/v2/all";
+      const getData = async () => {
+        ihtml = "";
+        let container = document.getElementById("container");
+        let cDiv = document.getElementById("country");
+        const res = await fetch(countriesApi);
+        const data = await res.json();
+        // data.forEach(element => {
+        //   console.log(element.name);
+        //   ihtml +=  `<div id="country">${element.name}</div>`
+        // });
+        data
+          .filter((item) => {
+            let d = document.getElementById("inp").value;
+            // var val = document.getElementById("inp").value;
+            console.log(item.name.toLowerCase().includes(d));
+            if (item.name.toLowerCase().indexOf(d) > -1) {
+            }
+            return item.name.toLowerCase().includes(d);
+          })
+          .map(
+            (item) =>
+              (ihtml += `
+            <div id="country">
+              <div class="imgc"> <img src="${item.flag}"/> </div>  
+              <span class="info">capital :${item.name}</span>  
+              <span class="info">capital :${item.capital}</span>  
+            </div>
+          `)
+          );
+        container.innerHTML = ihtml;
+      };
+      getData();
+
+      //////////////////////////////////////////
+
+      //   function myFunction() {
+
+      //     var input, filter, ul, li, a, i, txtValue;
+      //     input = document.getElementById("inp");
+      //     filter = input.value.toLowerCase();
+
+      //     for (i = 0; i < data.name.length; i++) {
+      //     //   a = li[i].getElementsByTagName("a")[0];
+      //     //   txtValue = a.textContent || a.innerText;
+      //        let pl = document.getElementById("country")
+      //         a = item.name[0]
+      //         txtValue = a.textContent
+      //       if (txtValue.toLowerCase().indexOf(filter) > -1) {
+      //         pl.style.display = "";
+      //       } else {
+      //         pl.style.display = "none";
+      //       }
+      //     }
+      //   }
+    </script>
+  </body>
+</html>

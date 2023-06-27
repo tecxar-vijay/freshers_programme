@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day25</title>
+    <style>
+      #progress::-webkit-progress-value {
+        filter: hue-rotate(calc(10deg * 3));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>World Countries Data</h1>
+      <h3>Currently we have</h3>
+      <div class="btns">
+        <button onclick="getPopulation()">Population</button>
+        <button>Languages</button>
+      </div>
+      <span>10 most populated country in the world</span>
+      <div id="data">
+        <!-- <progress id="progress" max="100"></progress>                                                                                                       -->
+      </div>
+    </div>
+    <script>
+      const getPopulation = async () => {
+        let ihtml = "";
+        const prog = document.getElementById("progress");
+        const p = document.getElementById("data");
+        const res = await fetch("https://restcountries.com/v2/all");
+        const data = await res.json();
+        // console.log(data);
+
+        const r = Object.values(data)
+          .map((item) => {
+            const country = item;
+            console.log(item);
+
+            return {
+              name: country.name,
+              population: country.population,
+            };
+          })
+          .sort((a, b) => b.population - a.population)
+          .slice(0, 10)
+          .map((item) =>
+            // console.log(item)
+            {
+              const arr = [30, 28, 10, 6, 6, 4, 4, 3, 3, 2];
+              let value = "";
+              const f = arr.map((item) => (value = item));
+              return (ihtml += `<div> <span>${item.name} </span> <progress  max="100" id="progress">${item.population} </progress> </div>`);
+            }
+          );
+        // console.log(r);
+        p.innerHTML = ihtml;
+      };
+
+      const obj = { 0: "1", 1: "2", 2: "3", 3: "4" };
+      const convertToArray = (obj) => {
+        const res = [];
+        const valuse = Object.values(obj);
+        valuse.forEach((element) => {
+          res.push(parseInt(element));
+        });
+        return res;
+      };
+      console.log(convertToArray(obj));
+
+      // const obj = {0: "1", 1: "2", 2: "3", 3: "4"};
+      // const convertToArray = (obj) => {
+      //   const res  = []
+      //   const keys = Object.keys(obj)
+      //   keys.forEach(element => {
+      //       res.push( parseInt(obj[element]))
+      //   });
+      //   return res
+      // }
+      // console.log(convertToArray(obj));
+
+      const [ele1] = [1, 2, 3, 4];
+      console.log();
+    </script>
+  </body>
+</html>
+<!-- .sort((a,b) => b -a ).slice(0 , 10) -->
+<!-- .map((item) =>  ihtml += `<div> <span>${item.name} </span> <span>${item.population} </span> </div>` ) -->
+<!-- [...item , {value : item}] -->
+<!-- const arr = [30,28,10,6,6,4,4,3,3,2] -->

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day22</title>
+</head>
+
+<body>
+
+    <script>
+
+
+        const styleElement = document.createElement("style");
+        document.body.appendChild(styleElement);
+
+        const header = document.createElement("div");
+        header.style.marginBottom = "1rem";
+        header.style.textAlign = "center";
+
+        let pOne;
+
+        const txt = [
+            "Even numbers background is grey",
+            "Odd numbers background is black",
+            "Prime numbers background is green"
+        ];
+
+        for (let a = 0; a < 3; a++) {
+            pOne = document.createElement("p");
+            pOne.style.fontSize = "1rem";
+            if (a === 1) {
+                pOne.style.margin = "0.5rem 0 0.5rem 0";
+            }
+            pOne.textContent = txt[a];
+            header.appendChild(pOne);
+        }
+
+        const divGroup = document.createElement("div");
+        divGroup.style.width = "100%";
+        divGroup.style.textAlign = "center";
+        divGroup.style.marginTop = "5px";
+
+        const input = document.createElement("input");//////////////////
+        input.placeholder = "Generate more numbers...";
+        input.style.width = "200px";
+        input.style.padding = "9px";
+        input.style.border = "none";
+        input.style.fontSize = "13px";
+
+        const button = document.createElement("button");
+        button.textContent = "Generate numbers";
+        button.style.background = "#2ecc71";
+        button.style.padding = "9px";
+        button.style.border = "none";
+        button.style.marginLeft = "5px";
+        button.style.fontSize = "13px";
+        button.style.cursor = "pointer";
+
+        // background:hover
+        button.addEventListener("mouseenter", () => (button.style.background = "#27ae60"));
+        button.addEventListener(
+            "mouseleave",
+            () => (button.style.background = "#2ecc71")
+        );
+
+        const divNumbers = document.createElement("div");
+        divNumbers.style.width = "100%";
+        divNumbers.style.display = "flex";
+        divNumbers.style.justifyContent = "center";
+        divNumbers.style.marginTop = "1rem";
+
+        const ul = document.createElement("ul");
+        ul.style.width = "100%";
+        ul.style.maxWidth = "51.7rem";
+        ul.style.listStyleType = "none";
+
+        ul.style.display = "flex";
+        ul.style.flexWrap = "wrap";
+
+        let li;
+
+        // Prime numbers
+        const isPrime = (num) => {
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return num > 1;
+        }
+
+        const numbers = (nbr) => {
+            for (let a = 0; a < nbr; a++) {
+                // element li
+                li = document.createElement("li");
+                li.setAttribute("id", "number");
+                li.style.color = "#ecf0f1";
+                li.style.fontWeight = "700";
+                li.style.fontSize = "2rem";
+                li.style.width = "8rem";
+                li.style.height = "8rem";
+                li.style.padding = "1rem";
+                li.style.borderRadius = "1rem";
+                li.style.margin = "0.3rem";
+                li.style.display = "flex";
+                li.style.justifyContent = "center";
+                li.style.alignItems = "center";
+                li.textContent = a;
+
+                // Even numbers => grey
+                if (a % 2 === 0) {
+                    li.style.background = "grey"
+                }
+
+                if (a % 2 === 0) {
+                    li.style.background = "grey";
+                } else {
+                    li.style.background = "black";
+                }
+                if (isPrime(a)) {
+                    li.style.background = "green";
+                }
+
+                ul.appendChild(li);
+            } 
+        };
+
+        // Button click
+        button.addEventListener("click", (e) => {
+            ul.innerHTML = "";
+            numbers(input.value);
+        });
+
+        // automatic
+        numbers(12);
+
+        divGroup.appendChild(input);
+        divGroup.appendChild(button);
+        divNumbers.appendChild(ul);
+
+        document.body.appendChild(header);
+        document.body.appendChild(divGroup);
+        document.body.appendChild(divNumbers);
+
+    </script>
+</body>
+
+</html>

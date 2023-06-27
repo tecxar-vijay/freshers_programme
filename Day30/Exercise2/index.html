@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day30</title>
+    <style>
+      .container > h1 {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .inp-h {
+        width: 500px;
+        height: 70px;
+        display: flex;
+        flex-direction: column;
+        font-family: sans-serif;
+      }
+
+      .inp-h > input {
+        height: 35px;
+        border-radius: 3px;
+      }
+
+      .inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: antiquewhite;
+        padding: 12px;
+        border-radius: 10px;
+      }
+
+      .container {
+        width: 40%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Form Validation</h1>
+      <form name="myForm" onsubmit="handleClick()" class="form">
+        <div class="inputs">
+          <div class="inp-h">
+            <label for="firstname">Firstname </label>
+            <input
+              type="text"
+              name="firstname"
+              onblur="validate(this,'ferror')"
+            />
+            <span class="error" id="ferror"></span>
+          </div>
+          <div class="inp-h">
+            <label for="lastname">Lastname</label>
+            <input
+              type="text"
+              name="lastname"
+              onblur="validate(this,'lerror')"
+            />
+            <span class="error" id="lerror"></span>
+          </div>
+          <div class="inp-h">
+            <label for="email">Email</label>
+            <input type="text" name="email" onblur="validate(this,'eerror')" />
+            <span class="error" id="eerror"></span>
+          </div>
+          <div class="inp-h">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              onblur="validate(this,'perror')"
+            />
+            <span class="error" id="perror"></span>
+          </div>
+          <div class="inp-h">
+            <label for="tel">Telephone</label>
+            <input type="number" name="tel" onblur="validate(this,'terror')" />
+            <span class="error" id="terror"></span>
+          </div>
+          <!-- <button onclick="handleClick()">Submit</button> -->
+          <input type="submit" name="save" />
+        </div>  
+      </form>
+    </div>
+    <script>  
+      const validate = (inp, spanid) => {
+        if (inp.value == "") {
+          document.getElementById(spanid).innerHTML =
+            "<b>Please fill this value </b>";
+        } else {
+          document.getElementById(spanid).innerHTML = "";
+        }
+        console.log(inp.value);
+      };
+
+      const handleClick = (e) => {
+        e.preventDefault(); 
+        // e.stopImmediatePropagation()
+        //  console.log(e); 
+        console.log("clicked");
+      };
+
+      // const validate = (inp,spanid) => {
+      // let isProceed = true
+      // let errorMessage = "Please fill the value "
+      // const fname = document.myForm.firstname.value
+      // const lname = document.myForm.lastname.value
+      // const email = document.myForm.email.value
+      // const pass = document.myForm.password.value
+      // const tel = document.myForm.tel.value
+      //  console.log("inside validate");
+      // if (fname == "" ) {
+      //     errorMessage += "Firstname"
+      //     isProceed = false
+      // }
+      // else if (lname == "") {
+      //     errorMessage += "Lastname"
+      //     isProceed = false
+      // }else if (email == "") {
+      //     errorMessage += "Email"
+      //     isProceed = false
+      // }else if (pass == "") {
+      //     errorMessage += "Password"
+      //     isProceed = false
+      // }else if (tel == "") {
+      //     errorMessage += "Telephone"
+      //     isProceed = false
+      // }
+
+      // if (!isProceed) {
+      //     alert(errorMessage)
+      // }
+      // return isProceed
+      // }
+
+      // const handleSubmit = (e) => {
+      //     // e.preventDefault()
+      //     console.log("clicked", e);
+      //     if (validate()) {
+
+      //         alert("registered successfully")
+      //     }
+      // }
+    </script>
+  </body>
+</html>

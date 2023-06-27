@@ -1,0 +1,32 @@
+.container > h1 {
+    font-family: sans-serif;
+}
+
+.input {
+    width: 200px;
+    height: 40px;
+    text-align: center  ;
+    border: 1px solid rgb(207, 181, 181);
+}
+.btn {
+    width: 90px;
+    height: 33px;
+    border-radius: 5px;
+    background-color: rgb(218, 215, 213);
+}
+
+.container {
+    width: 65%;
+    margin:0 auto;
+}
+
+.fields {
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color:rgb(207, 181, 181);
+}
+
+.field {
+    background-color:rgb(207, 181, 181);    
+}

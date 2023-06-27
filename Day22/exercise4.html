@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day21</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .wrapper {
+            width: 50vw;
+            height: 800px;
+            margin: 0 auto;
+        }
+
+        #time {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Asabeneh Yetayeh challenges in <span id="year"> 2020 </span></h1>
+        <h2>30DaysOfJavaScript Challenge</h2>
+        <div id="time">24/05/2023</div>
+        <ul>
+            <li class="done">30DaysOfPython Challenge Done  <details><summary>Python</summary><p>Python is a backend programming language </p></details> </li>
+            <li class="ongoing">30DaysOfJavaScript Challenge Ongoing <details><summary>Javascript</summary><p>Javascript is a Single threaded,None blocking ,syncronouse language </p></details></li>
+            <li class="coming">30DaysOfReact Challenge Coming  </li>
+            <li class="coming">30DaysOfFullStack Challenge Coming</li>
+            <li class="coming">30DaysOfDataAnalysis Challenge Coming</li>
+            <li class="coming">30DaysOfReactNative Challenge Coming</li>
+            <li class="coming">30DaysOfMachineLearning Challenge Coming</li>
+        </ul>
+    </div>
+
+    <script>
+        let year = document.getElementById("year")
+
+        setInterval(() => {
+            let randomcolor = Math.floor(Math.random() * 16777);
+            let randomcode = "#" + randomcolor.toString();
+            year.style.color = randomcode
+        }, 1000);
+
+        let time = document.getElementById("time")
+        setInterval(() => {
+            let randomcolor = Math.floor(Math.random() * 1677121);
+            let randomcode = "#" + randomcolor.toString();
+            time.style.background = randomcode
+            time.innerHTML = new Date().toUTCString()
+        }, 1000);
+
+        let done = document.getElementsByClassName("done")
+        let ongoing = document.getElementsByClassName("ongoing")
+        let coming = document.getElementsByClassName("coming")
+
+        for (let i = 0; i < coming.length; i++) {
+            coming[i].style.color = "red"
+        }
+        for (let i = 0; i < done.length; i++) {
+            done[i].style.color = "green"
+        }
+        for (let i = 0; i < ongoing.length; i++) {
+            ongoing[i].style.color = "skyblue"
+        }
+
+    </script>
+</body>
+
+</html>

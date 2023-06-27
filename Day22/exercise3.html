@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day22</title>
+    <style>
+      #container {
+        width: 80%;
+        height: 80%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: auto auto auto auto auto auto;
+        /* grid-template-columns: repeat(auto-fit()); */
+      }
+      
+      #country {
+        width: 150px;
+        height: 150px;
+        border: 2px solid grey;
+        border-radius: 8px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>World Countries Data</h1>
+    <div id="container">
+      <div id="country"></div>
+    </div>
+
+    <script>
+      const countriesApi = "https://restcountries.com/v2/all";  
+      
+      const getData = async () => {
+        ihtml =""
+        let container = document.getElementById("container");
+        let cDiv = document.getElementById("country");
+        const res = await fetch(countriesApi);
+        const data = await res.json();
+        // data.forEach(element => {
+        //   console.log(element.name);
+        //   ihtml +=  `<div id="country">${element.name}</div>`
+        // });
+        const n = data.map(
+          (item) => ihtml += `<div id="country">${item.name}</div>`
+        );
+        container.innerHTML = ihtml
+      };
+      getData();
+    </script>
+  </body>
+</html>

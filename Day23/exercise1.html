@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day23</title>
+  </head>
+  <body>
+    You Pressed :<span id="wrapper"></span>
+    <script>
+        const w = document.getElementById("wrapper")
+        document.body.addEventListener("keypress",() => {
+            w.innerText = event.key
+        })
+    </script>
+  </body>
+</html>

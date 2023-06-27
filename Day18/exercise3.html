@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        ///// (1)  find the average weight of cat in metric unit
+        const catsAPI = 'https://api.thecatapi.com/v1/breeds'
+
+        const aveWeigth = async () => {
+            const res = await fetch(catsAPI)
+            const data = await res.json()
+            const entries = Object.entries(data)
+            const weights = entries.map((item) => parseInt(item[1].weight.metric))
+            const ave = weights.reduce((a, b) => a + b, 0) / weights.length
+            // console.log(ave);
+        }
+        // aveWeigth()
+
+        //// 3(2)  find the 10 largest countries from api data
+            
+            const countriesApi = "https://restcountries.com/v2/all"
+            
+            const getData = async () => {
+                const res = await fetch(countriesApi)
+                const data = await res.json()
+                const large = data.sort((a,b) => b.area -a.area)
+                // console.log(large);
+                const l = large.slice(0,10)
+                const arr = []
+                l.forEach(e => {
+                    arr.push(`${e.name} : ${e.area}`)
+                });
+                // console.log(arr);
+            }
+            // getData()
+
+            //// 3(3)  Read the countries api and count total number of languages in the world used as officials.
+
+            const findTotalLang =async () => {
+                const res = await fetch(countriesApi)
+                const data = await res.json()
+                const l = data.map((item) => (item.languages).map((item) => item.name))
+                const arr = Array(l)
+                const a = arr.flat(2)
+                const setOfLang = new Set(a)
+                console.log(setOfLang.size);    
+            }
+            findTotalLang()
+ 
+    </script>
+</body>
+
+</html>

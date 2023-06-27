@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day27</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="name"><h1>Vijay Prajapati</h1></div>
+      <div class="nav" id="nav"></div>
+      <div class="text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis placeat
+        totam labore unde? Molestias optio odio cum omnis consectetur
+        reprehenderit esse non? Id, laboriosam magni praesentium sed ea cum
+        aspernatur! Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        Pariatur inventore accusantium a, deserunt repellat, maxime
+        exercitationem, sequi libero iste in nesciunt architecto animi quibusdam
+        odio? Error accusantium aspernatur dignissimos beatae.
+      </div>
+      <div class="boxes">
+        <div class="box"><span>Javascript for Everyone</span></div>
+        <div class="box"><span>30 Days of Python</span></div>
+        <div class="box"><span>30 Days of React</span></div>
+      </div>
+    </div>
+
+    <script>
+      const arr = ["Programmer", "Student", "Quick Lerner", "Leader"];
+      const s = document.getElementById("nav");
+
+      const getDynamic = (arr) => {
+        let ihtml = "";
+        const random = Math.floor(Math.random() * arr.length);
+        for (let i = 0; i < arr.length; i++) {
+          const t = setInterval(() => {
+            ihtml += Math.floor(Math.random() * arr);
+            s.innerHTML = arr[random];
+          }, 800);
+          clearInterval(t);
+          const t2 = setInterval(() => {
+            ihtml += Math.floor(Math.random() * arr.length);
+            s.innerHTML = arr[random];
+          }, 800);
+        }
+      };            
+      getDynamic(arr);
+    </script>
+  </body>
+</html>
+    
+<!-- 
+const sleep = async (seconds) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(true)
+        }, seconds * 1000);
+    })
+}
+
+const show = async (message) => {
+    await sleep(2)
+    // console.log(message);
+    s.innerHTML = s.innerHTML + message + "<br>";
+}
+
+(async () => {
+    for (let index = 0; index < arr.length; index++) {
+        await show(arr[index])                
+    }
+})() -->

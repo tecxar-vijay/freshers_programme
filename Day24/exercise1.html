@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day24</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1 class="title">Calculate Object Weight in a Planet</h1>
+    <div class="input-block-container">
+      <input
+        type="text"
+        id="mass"
+        name="mass"
+        class="input-items"
+        placeholder="Enter a number"
+        required
+      />
+
+      <select name="planets" id="select-planets" class="input-items">
+        <option value="none">Select a planet</option>
+        <option value="mercury">Mercury</option>
+        <option value="venus">Venus</option>
+        <option value="earth">Earth</option>
+        <option value="mars">Mars</option>
+        <option value="jupiter">Jupiter</option>
+        <option value="saturn">Saturn</option>
+        <option value="uranus">Uranus</option>
+        <option value="neptune">Neptune</option>
+        <option value="moon">Moon</option>
+      </select>
+      <button name="button" class="input-items" id="btn-calculate">
+        Calculate
+      </button>
+    </div>
+    <div class="result-block-container">
+      <img id="planet-img" src="" class="result-items" />
+      <div class="result-items" id="result-text">
+        <div id="show-input"></div>
+        <div id="result-weight"></div>
+      </div>
+    </div>
+
+    <script>
+      const mass = document.querySelector("#mass");
+      const selectPlanets = document.querySelector("#select-planets");
+      const button = document.querySelector("button");
+
+      const gravity = {
+        mercury: 3.6,
+        venus: 8.9,
+        earth: 9.8,
+        mars: 3.8,
+        jupiter: 26,
+        saturn: 11.1,
+        uranus: 10.7,
+        neptune: 14.1,
+        moon: 1.6,
+      };
+
+      button.addEventListener("click", function () {
+        if (mass.value !== "" && selectPlanets.value !== "none") {
+          document.querySelector(
+            "img"
+          ).src = `./assets/${selectPlanets.value}.png`;
+          document.querySelector(
+            "img"
+          ).alt = `Image of planet ${selectPlanets.value}.`;
+
+          document.querySelector("#show-input").innerText = `Weight of a ${
+            mass.value
+          } kg object in ${selectPlanets.value.toUpperCase()} is`;
+
+          document.querySelector("#result-weight").innerText = `${parseFloat(
+            mass.value * gravity[selectPlanets.value]
+          ).toFixed(2)} N`;
+        } else {
+          document.querySelector("#show-input").innerText = "";
+          document.querySelector("img").src = "";
+          document.querySelector("img").alt = "";
+          document.querySelector("#result-weight").innerText =
+            "Mass and Planet are required. Fill the input!";
+        }
+      });
+    </script>
+  </body>
+</html>

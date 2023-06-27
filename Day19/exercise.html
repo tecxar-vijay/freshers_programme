@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day19</title>
+</head>
+
+<body>
+    <script>
+        const counter = (function () {
+            let privateCounter = 0;
+            function changeBy(val) {
+                privateCounter += val;
+            }
+
+            return {
+                increment() {
+                    changeBy(1);
+                },
+
+                decrement() {
+                    changeBy(-1);
+                },
+
+                value() {
+                    return privateCounter;
+                },
+            };
+        })();
+
+        console.log(counter.value()); // 0.
+
+        counter.increment();
+        counter.increment();
+        console.log(counter.value()); // 2.
+
+        counter.decrement();
+        console.log(counter.value()); // 1.
+
+
+
+        //// (1) Create a personAccount out function. It has firstname, lastname, incomes, expenses inner variables. It has totalIncome, totalExpense, accountInfo,addIncome, addExpense and accountBalance inner functions. Incomes is a set of incomes and its description and expenses is also a set of expenses and its description.
+
+        const personAccount = () => {
+            const firstname = "vijay"
+            const lastname = "prajapati"
+            const incomes = [5000, 6000, 8000, 10000]
+            const expenses = [1000, 2000, 5000, 4000]
+            function totalIncome() {
+                return (incomes.reduce((a, b) => a + b, 0));
+            }
+            function totalExpences() {
+                return (expenses.reduce((a, b) => a + b, 0));
+            }
+            function accountInfo() {
+                return `
+                  name : ${firstname}
+                  incomes : ${totalIncome()}
+                  expenses : ${totalExpences()}
+                `
+            }
+            return {
+                totalExpences : totalExpences(),
+                totalIncome : totalIncome(),
+                accountInfo : accountInfo()
+            }
+
+        }
+        const r = personAccount()
+        console.log(r.totalExpences);
+        console.log(r.totalIncome);
+        console.log(r.accountInfo);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Add The Players in Table</h1>
+      <div class="complete">
+        <div class="form">
+          <input
+            type="text"
+            id="firstname"
+            placeholder="Firstname"
+            class="input"
+          />
+          <input
+            type="text"
+            id="lastname"
+            placeholder="LastName"
+            class="input"
+          />
+          <input type="text" id="country" placeholder="Country" class="input" />
+          <input type="text" id="score" placeholder="Score" class="input" />
+          <span id="error"></span>
+          <button onclick="publishToTable()" class="btn">Submit</button>
+        </div>
+      </div>
+      <div class="tables">
+        <table id="table">
+          <thead>
+            <tr class="field">
+              <th class="fields">FirstName</th>
+              <th class="fields">LastName</th>
+              <th class="fields">Country</th>
+              <th class="fields">Score</th>
+              <th class="feilds"></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      function publishToTable() {
+        const firstName = document.getElementById("firstname").value;
+        const lastName = document.getElementById("lastname").value;
+        const country = document.getElementById("country").value;
+        const score = document.getElementById("score").value;
+        const error = document.getElementById("error");
+
+        if (firstName && lastName && country && score) {
+          const tableElement = document.getElementById("table");
+          let trElement = document.createElement("tr");
+
+          const tbodyElement = document.createElement("tbody");
+          const firstNameEle = document.createElement("td");
+          const lastNameEle = document.createElement("td");
+          const countryEle = document.createElement("td");
+          const scoreEle = document.createElement("td");
+          const btnElem = document.createElement("button");
+
+          firstNameEle.innerHTML = firstName;
+          lastNameEle.innerHTML = lastName;
+          countryEle.innerHTML = country;
+          scoreEle.innerHTML = score;
+          btnElem.innerText = "Delete";
+          btnElem.onclick = (e) => tableElement.deleteRow(trElement);
+
+          trElement.appendChild(firstNameEle);
+          trElement.appendChild(lastNameEle);
+          trElement.appendChild(countryEle);
+          trElement.appendChild(scoreEle);
+          trElement.appendChild(btnElem);
+          tbodyElement.appendChild(trElement);
+          tableElement.appendChild(tbodyElement);
+        }
+      }
+      // code to find the fectorial of number
+
+      function factorial(n) {
+        if (n === 0 || n === 1) {
+          return 1;
+        } else {
+          return n * factorial(n - 1);
+        }
+      }
+
+      // Example usage:
+      const number = 9;
+      const result = factorial(number);
+      console.log(`The factorial of ${number} is ${result}`);
+    </script>
+  </body>
+</html>
